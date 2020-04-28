@@ -138,6 +138,7 @@ async function loadNext() {
     lastRunFailed = true;
     console.error(e);
     loadNext();
+    return;
   }
 
   lastRunFailed = false;
