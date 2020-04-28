@@ -3,8 +3,8 @@ Framed Visuals: collaborative generative art.
 
 ## Adding a work to frameV
 1. Create your repo
-  * Your repo should have an `index.html` file in the root.
-  * You can use any method to create animations (SVG, Canvas2D, WebGL etc) but be weary that not everyone's devices will be the same, so performance counts.
+   * Your repo should have an `index.html` file in the root. An example of a frameV repo can be found here: https://github.com/2xAA/frame-v-squares
+   * You can use any method to create animations (SVG, Canvas2D, WebGL etc) but be weary that not everyone's devices will be the same, so performance counts.
 2. Fork this repo
 3. Add an entry in `works.json`
 ```JavaScript
