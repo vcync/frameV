@@ -8,5 +8,11 @@
     "author": "2xAA",
     "title": "Squares",
     "repo": "https://github.com/2xAA/frame-v-squares"
+  },
+  {
+    "author": "2xAA",
+    "title": "Unicode Wave",
+    "repo": "https://github.com/2xAA/framev-unicode-wave",
+    "dir": "dist"
   }
 ]
