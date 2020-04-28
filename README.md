@@ -1,4 +1,4 @@
-# frame-v
+# frameV
 Framed Visuals: collaborative generative art.
 
 ## Adding a work to frameV
