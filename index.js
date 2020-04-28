@@ -5,7 +5,7 @@ const path = require('path');
 
 const express = require('express');
 const http = require('http');
-const reload = require('reload');
+const reload = require('reload/lib/reload');
 const cheerio = require('cheerio');
 
 const app = express()
@@ -20,7 +20,29 @@ let currentWorkIndex = -1;
 let lastRunFailed = false;
 let reloadInstance = null;
 
-app.set('port', process.env.PORT || 8765)
+app.set('port', process.env.PORT || 8765);
+
+/*
+  we need to attach our own reload injection stuff
+  here because reload doesn't allow using the same
+  port for ws and http by default and we need to do
+  this manually
+*/
+
+const RELOAD_FILE = path.join(__dirname, './node_modules/reload/lib/reload-client.js');
+let reloadCode = fs.readFileSync(RELOAD_FILE, 'utf8');
+const webSocketString = process.env.NODE_ENV === 'production' ? 'wss://$3' : 'ws$2://$3'
+reloadCode = reloadCode.replace(
+  'socketUrl.replace()',
+  'socketUrl.replace(/(^http(s?):\\/\\/)(.*:)(.*)/,' + ('\'' + webSocketString + '$4') + '\')');
+
+const reloadRoute = '/reload/reload.js';
+
+app.get(reloadRoute, function (req, res) {
+  res.type('text/javascript')
+  res.send(reloadCode)
+});
+
 app.get('/', function (req, res) {
   const work = works[currentWorkIndex];
 
