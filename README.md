@@ -6,17 +6,32 @@ Framed Visuals: collaborative generative art.
    * Your repo should have an `index.html` file in the root. An example of a frameV repo can be found here: https://github.com/2xAA/frame-v-squares
    * You can use any method to create animations (SVG, Canvas2D, WebGL etc) but be wary that not everyone's devices will be the same, so performance counts.
 2. Fork this repo
-3. Add an entry in `works.json`
-```JavaScript
+3. Add an entry in `works.json` (see the [Work entries](#work-entries) section below for more info)
+4. Create a PR back to this repo
+
+
+
+## Work entries
+
+The `works.json` file contains an array of work entries in the following format:
+
+```javascript
 {
   "author": "2xAA",
   "title": "Squares",
-  "repo": "https://github.com/2xAA/frame-v-squares"
+  "repo": "https://github.com/2xAA/frame-v-squares",
+  "dir": "dist" // (optional)
 }
 ```
-4. Create a PR back to this repo
+
+### Dir
+
+The `dir` key is optional and is used to specify where in *your* repo your index.html is.
+
+An example of a working repo with the `dir` key specified in the work entry can be found here: https://github.com/2xAA/framev-unicode-wave
 
 ## Requirements for running the server
+
 * node.js >= 12
 
 ## Running the server

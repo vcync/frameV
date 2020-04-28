@@ -48,8 +48,15 @@ app.get(reloadRoute, function (req, res) {
 
 app.get('/', function (req, res) {
   const work = works[currentWorkIndex];
+  let workDir = tempDir;
 
-  const html = fs.readFileSync(path.join(tempDir, 'index.html'), 'utf8');
+  if (works[currentWorkIndex].dir) {
+    workDir = path.join(tempDir, works[currentWorkIndex].dir);
+  }
+
+  app.use('/static', express.static(workDir));
+
+  const html = fs.readFileSync(path.join(workDir, 'index.html'), 'utf8');
   const $ = cheerio.load(html);
   const scriptNode = '<script src="/reload/reload.js"></script>';
   $('body').append(scriptNode);
