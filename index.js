@@ -68,7 +68,7 @@ app.get('/', function (req, res) {
   color: #fff;
   text-decoration: none;
 }
-"><div>${work.title}</div><div>by ${work.author}</div></a><a href="https://github.com/vcync/frameV" style="
+"><div>${work.title}</div><div>by ${work.author}</div></a><a href="https://github.com/vcync/frameV" target="_blank" style="
 font-size: 1rem;
 position: absolute;
 right: 1rem;
