@@ -54,16 +54,20 @@ app.get('/', function (req, res) {
   const scriptNode = '<script src="/reload/reload.js"></script>';
   $('body').append(scriptNode);
 
-  const viewport = `<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">`;
+  const viewport = `<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+  <link href="https://v36p9.csb.app/style.css" rel="stylesheet" />`;
   $('head').append(viewport);
 
-  const fullscreenScript = `<div style="
+  const fullscreenScript = `<a href="${work.repo}" target="_blank" style="
   position: absolute;
   font-size: 3rem;
-  text-shadow: #fff 2px 2px;
-  font-family: monospace;
   bottom: 1rem;
   left: 1rem;
+  font-weight: 100;
+  mix-blend-mode: difference;
+  color: #fff;
+  text-decoration: none;
+}
 "><div>${work.title}</div><div>by ${work.author}</div></div>`;
   $('body').append(fullscreenScript);
 
