@@ -1,6 +1,20 @@
 # frameV
 Framed Visuals: collaborative generative art.
 
+## What is frameV?
+frameV is a collaborative platform to display artworks that are rendered in the browser.
+It is open source and anybody can submit their work.
+The works are randomly selected from a pre-approved list and refreshes currently every 60 seconds.
+
+## Why the browser?
+The web is open, accessible, and runs everywhere.
+You want to run this on your old phone as a cool art display in your house? No problem.
+
+## What is the approval process?
+Submit a PR following the steps below.
+Maintainers will run your work, make sure it isn't malicious and you'll most likely get your work shown.
+If there is a problem, we'll let you know via your PR.
+
 ## Adding a work to frameV
 1. Create your repo
    * Your repo should have an `index.html` file in the root. An example of a frameV repo can be found here: https://github.com/2xAA/frame-v-squares
