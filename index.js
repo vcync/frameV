@@ -21,6 +21,7 @@ let lastRunFailed = false;
 let reloadInstance = null;
 
 app.set('port', process.env.PORT || 8765)
+console.log('port is', process.env.PORT, typeof process.env.PORT)
 app.get('/', function (req, res) {
   const work = works[currentWorkIndex];
 
