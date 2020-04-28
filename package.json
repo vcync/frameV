@@ -1,0 +1,16 @@
+{
+  "name": "frame-v",
+  "version": "0.0.1",
+  "description": "Display generative works in a frame",
+  "main": "index.js",
+  "author": "Sam Wray <sam@wray.pro>",
+  "license": "MIT",
+  "private": false,
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.3",
+    "express": "^4.17.1",
+    "http": "^0.0.1-security",
+    "nodegit": "^0.26.5",
+    "reload": "^3.0.4"
+  }
+}
