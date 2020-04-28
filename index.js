@@ -15,6 +15,7 @@ const rmdirAsync = util.promisify(fs.rmdir);
 
 const tempDir = path.join(__dirname, 'tmp');
 
+const IS_PROD = process.env.NODE_ENV === 'production';
 let works = [];
 let currentWorkIndex = -1;
 let lastRunFailed = false;
@@ -24,9 +25,9 @@ app.set('port', process.env.PORT || 8765);
 
 /*
   we need to attach our own reload injection stuff
-  here because reload doesn't allow using the same
-  port for ws and http by default and we need to do
-  this manually
+  here because reload doesn't expose a method for
+  using the same port for ws and http by default
+  so we gotta do this manually
 */
 
 const RELOAD_FILE = path.join(__dirname, './node_modules/reload/lib/reload-client.js');
@@ -34,7 +35,7 @@ let reloadCode = fs.readFileSync(RELOAD_FILE, 'utf8');
 const webSocketString = process.env.NODE_ENV === 'production' ? 'wss://$3' : 'ws$2://$3'
 reloadCode = reloadCode.replace(
   'socketUrl.replace()',
-  'socketUrl.replace(/(^http(s?):\\/\\/)(.*:)(.*)/,' + ('\'' + webSocketString + '$4') + '\')');
+  'socketUrl.replace(/(^http(s?):\\/\\/)(.*:)(.*)/,' + (IS_PROD ? '\'' + webSocketString : '\'' + webSocketString + '$4') + '\')');
 
 const reloadRoute = '/reload/reload.js';
 
