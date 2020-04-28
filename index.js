@@ -60,7 +60,7 @@ async function start() {
   works = JSON.parse(worksJson);
 
   try {
-    reloadInstance = await reload(app, { port: process.env.NODE_ENV === 'production' ? 80 : null });
+    reloadInstance = await reload(app, { port: process.env.NODE_ENV === 'production' ? process.env.PORT : null });
   } catch (err) {
     console.error('Reload could not start, could not start server/sample app', err);
     process.exit();
