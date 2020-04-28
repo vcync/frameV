@@ -60,7 +60,7 @@ app.get('/', function (req, res) {
 
   const fullscreenScript = `<a href="${work.repo}" target="_blank" style="
   position: absolute;
-  font-size: 3rem;
+  font-size: 2rem;
   bottom: 1rem;
   left: 1rem;
   font-weight: 100;
@@ -68,7 +68,15 @@ app.get('/', function (req, res) {
   color: #fff;
   text-decoration: none;
 }
-"><div>${work.title}</div><div>by ${work.author}</div></div>`;
+"><div>${work.title}</div><div>by ${work.author}</div></a><a href="https://github.com/vcync/frameV" style="
+font-size: 1rem;
+position: absolute;
+right: 1rem;
+top: 1rem;
+font-weight: 100;
+mix-blend-mode: difference;
+color: #fff;
+text-decoration: none;">frameV: Contribute</a>`;
   $('body').append(fullscreenScript);
 
   res.send($.html());
