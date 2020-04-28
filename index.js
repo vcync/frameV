@@ -32,10 +32,12 @@ app.set('port', process.env.PORT || 8765);
 
 const RELOAD_FILE = path.join(__dirname, './node_modules/reload/lib/reload-client.js');
 let reloadCode = fs.readFileSync(RELOAD_FILE, 'utf8');
-const webSocketString = process.env.NODE_ENV === 'production' ? 'wss://$3' : 'ws$2://$3'
+
+const webSocketString = IS_PROD ? 'wss://$3' : 'ws$2://$3$4';
+
 reloadCode = reloadCode.replace(
   'socketUrl.replace()',
-  'socketUrl.replace(/(^http(s?):\\/\\/)(.*:)(.*)/,' + (IS_PROD ? '\'' + webSocketString : '\'' + webSocketString + '$4') + '\')');
+  'socketUrl.replace(/(^http(s?):\\/\\/)(.*:)(.*)/,' + '\'' + webSocketString + '\')');
 
 const reloadRoute = '/reload/reload.js';
 
