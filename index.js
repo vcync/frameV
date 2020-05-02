@@ -8,6 +8,8 @@ const http = require('http');
 const reload = require('reload/lib/reload');
 const cheerio = require('cheerio');
 
+const clientsideCodeGenerator = require('./client.js');
+
 const app = express()
 
 const readFileAsync = util.promisify(fs.readFile);
@@ -55,36 +57,74 @@ app.get('/', function (req, res) {
   }
 
   app.use('/static', express.static(workDir));
+  let html = '';
 
-  const html = fs.readFileSync(path.join(workDir, 'index.html'), 'utf8');
+  try {
+    html = fs.readFileSync(path.join(workDir, 'index.html'), 'utf8');
+  } catch(e) {
+    try {
+      html = fs.readFileSync(path.join('./', 'loading.html'), 'utf8');
+    } catch(e) {
+      console.error(e);
+      return;
+    }
+  }
+
   const $ = cheerio.load(html);
   const scriptNode = '<script src="/reload/reload.js"></script>';
   $('body').append(scriptNode);
 
-  const viewport = `<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
-  <link href="https://v36p9.csb.app/style.css" rel="stylesheet" />`;
+  const viewport = `
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+    <link href="https://v36p9.csb.app/style.css" rel="stylesheet" />
+    <style>
+      .work-details {
+        position: absolute;
+        font-size: 2rem;
+        bottom: 1rem;
+        left: 1rem;
+        font-weight: 100;
+        mix-blend-mode: difference;
+        color: #fff;
+        text-decoration: none;
+      }
+
+      .contribute-link {
+        font-size: 1rem;
+        position: absolute;
+        right: 1rem;
+        top: 1rem;
+        font-weight: 100;
+        mix-blend-mode: difference;
+        color: #fff;
+        text-decoration: none;
+      }
+
+      .modal-hidden {
+        display: none;
+      }
+
+      .modal-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        padding: 1em;
+        box-sizing: border-box;
+        background-color: #fff;
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .show-if-prefers-reduced-motion {
+          display: block;
+        }
+      }
+    </style>`;
   $('head').append(viewport);
 
-  const fullscreenScript = `<a href="${work.repo}" target="_blank" style="
-  position: absolute;
-  font-size: 2rem;
-  bottom: 1rem;
-  left: 1rem;
-  font-weight: 100;
-  mix-blend-mode: difference;
-  color: #fff;
-  text-decoration: none;
-}
-"><div>${work.title}</div><div>by ${work.author}</div></a><a href="https://github.com/vcync/frameV" target="_blank" style="
-font-size: 1rem;
-position: absolute;
-right: 1rem;
-top: 1rem;
-font-weight: 100;
-mix-blend-mode: difference;
-color: #fff;
-text-decoration: none;">frameV: Contribute</a>`;
-  $('body').append(fullscreenScript);
+  const clientStrings = clientsideCodeGenerator(work)
+  $('body').append(clientStrings);
 
   res.send($.html());
 })
