@@ -57,8 +57,19 @@ app.get('/', function (req, res) {
   }
 
   app.use('/static', express.static(workDir));
+  let html = '';
 
-  const html = fs.readFileSync(path.join(workDir, 'index.html'), 'utf8');
+  try {
+    html = fs.readFileSync(path.join(workDir, 'index.html'), 'utf8');
+  } catch(e) {
+    try {
+      html = fs.readFileSync(path.join('./', 'loading.html'), 'utf8');
+    } catch(e) {
+      console.error(e);
+      return;
+    }
+  }
+
   const $ = cheerio.load(html);
   const scriptNode = '<script src="/reload/reload.js"></script>';
   $('body').append(scriptNode);
