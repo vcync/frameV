@@ -5,6 +5,8 @@ module.exports = function client(work) {
   <a
     href="${work.repo}"
     target="_blank"
+    rel="noopener"
+    rel="noreferrer"
     class="work-details"
   ><div>${
       work.title
@@ -17,6 +19,8 @@ module.exports = function client(work) {
   <a
     href="https://github.com/vcync/frameV"
     target="_blank"
+    rel="noopener"
+    rel="noreferrer"
     class="contribute-link"
   >frameV: Contribute</a>`);
 
@@ -31,7 +35,12 @@ module.exports = function client(work) {
           If you are comfortable with this please proceed by dismissing this message with the "OK" button below. By pressing "OK" this message will no longer appear when visiting frameV.
         </p>
         <p class="text-background">
-          To learn more about vestibular triggers and responsive design for motion, please follow this link: <a href="https://webkit.org/blog/7551/responsive-design-for-motion/" target="_blank">https://webkit.org/blog/7551/responsive-design-for-motion/</a>
+          To learn more about vestibular triggers and responsive design for motion, please follow this link: <a
+            href="https://webkit.org/blog/7551/responsive-design-for-motion/"
+            target="_blank"
+            rel="noopener"
+            rel="noreferrer"
+          >https://webkit.org/blog/7551/responsive-design-for-motion/</a>
         </p>
         <br />
         <button class="button" onclick="hideReducedMotionDialog()">OK</button>
