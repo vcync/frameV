@@ -73,9 +73,12 @@ app.get('/', function (req, res) {
   const $ = cheerio.load(html);
   const scriptNode = '<script src="/reload/reload.js"></script>';
   $('body').append(scriptNode);
+  $('html').attr('lang', 'en');
+  $('title').remove();
+  $('head').append(`<title>${work.title} - ${work.author} | frameV</title>`);
 
   const viewport = `
-    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
     <link href="https://v36p9.csb.app/style.css" rel="stylesheet" />
     <style>
       .work-details {
