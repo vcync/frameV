@@ -76,6 +76,7 @@ app.get('/', function (req, res) {
   $('html').attr('lang', 'en');
   $('title').remove();
   $('head').append(`<title>${work.title} - ${work.author} | frameV</title>`);
+  $('head').append(`<meta name="description" content="Framed Visuals: collaborative generative art.">`);
 
   const viewport = `
     <meta name="viewport" content="width=device-width,initial-scale=1">
