@@ -14,5 +14,10 @@
     "title": "Unicode Wave",
     "repo": "https://github.com/2xAA/framev-unicode-wave",
     "dir": "dist"
+  },
+  {
+    "author": "Luke Wilson",
+    "title": "Sand",
+    "repo": "https://github.com/l2wilson/FrameV-Sand"
   }
 ]
