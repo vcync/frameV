@@ -71,5 +71,5 @@ module.exports = function client(work) {
       </noscript>
     `)
 
-    return strings.join();
+    return strings.join('');
   }
