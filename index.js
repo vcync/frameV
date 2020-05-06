@@ -48,7 +48,7 @@ app.get(reloadRoute, function (req, res) {
   res.send(reloadCode)
 });
 
-app.get('/', function (req, res) {
+app.get(['/', '/index.html', '/index.htm'], function (req, res) {
   const work = works[currentWorkIndex];
   let workDir = tempDir;
 
@@ -56,7 +56,7 @@ app.get('/', function (req, res) {
     workDir = path.join(tempDir, works[currentWorkIndex].dir);
   }
 
-  app.use('/static', express.static(workDir));
+  app.use('/', express.static(workDir));
   let html = '';
 
   try {
@@ -161,7 +161,7 @@ async function start() {
 }
 
 async function loadNext() {
-  const newWorkIndex = Math.floor(Math.random() * works.length);
+  const newWorkIndex = 4;//Math.floor(Math.random() * works.length);
 
   if (currentWorkIndex === newWorkIndex && lastRunFailed) {
     process.exit();
