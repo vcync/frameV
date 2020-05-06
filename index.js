@@ -161,7 +161,7 @@ async function start() {
 }
 
 async function loadNext() {
-  const newWorkIndex = 4;//Math.floor(Math.random() * works.length);
+  const newWorkIndex = Math.floor(Math.random() * works.length);
 
   if (currentWorkIndex === newWorkIndex && lastRunFailed) {
     process.exit();
