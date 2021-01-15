@@ -7,10 +7,13 @@ const express = require('express');
 const http = require('http');
 const reload = require('reload/lib/reload');
 const cheerio = require('cheerio');
+const cors = require('cors');
+
 
 const clientsideCodeGenerator = require('./client.js');
 
 const app = express()
+app.use(cors())
 
 const readFileAsync = util.promisify(fs.readFile);
 const rmdirAsync = util.promisify(fs.rmdir);
